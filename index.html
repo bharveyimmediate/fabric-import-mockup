@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <style media="screen">
+
+      .btn-with-preceeding-text {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        align-items: center;
+      }
+
+      .btn-with-preceeding-text__text {
+        margin-bottom: 0;
+      }
+
+      .btn-with-preceeding-text__btn {
+        margin-left: 20px;
+      }
+
+      .btn-remove {
+        color: red;
+      }
+
+      .btn-icon {
+        margin-right: 5px;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .row-removed {
+        background-color: #e9ecef;
+        position: relative;
+      }
+
+      .row-removed td {
+        color: #aaa;
+      }
+
+      .btn-undo {
+
+      }
+
+      .row-removed__cta {
+        color: #000;
+      }
+
+      .check-grey {
+        color: #e9ecef;
+      }
+
+      .check-green {
+        color: #28a745;
+      }
+
+      td .fa-exclamation {
+        color: #dc3545;
+      }
+
+      .custom-select.is-valid {
+        background: none;
+      }
+
+      button[disabled] {
+        cursor: not-allowed;
+      }
+
+      .masthead {
+        margin-top: 30px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <h1>Export articles to Fabric</h1>
+          <p>Site: sciencefocus.com</p>
+
+          <h2>Article queue</h2>
+
+          <div class="alert alert-info">
+            Assign a category to each article
+          </div>
+
+          <form v-on:submit.prevent="handleSubmit">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Title</th>
+                  <th>Issue</th>
+                  <th>Website category (required)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr v-bind:class="`row-article ${article.removed ? 'row-removed' : ''}`" v-for="article in articles">
+                  <td>
+                    <i v-if="!article.removed && article.category == -1" class="fas fa-check check-grey"></i>
+                    <i v-if="!article.removed && article.category != -1" class="fas fa-check check-green"></i>
+                  </td>
+                  <td>{{ article.title }}</td>
+                  <td>{{ article.issue }}</td>
+                  <td>
+                    <select class="custom-select" v-on:change="updateCategory($event, article.id)" v-bind:disabled="article.removed">
+                      <option value="-1">Please select...</option>
+                      <option value="reviews">Reviews</option>
+                      <option value="advice">Advice</option>
+                      <option value="science">Science</option>
+                      <option value="missions">Missions</option>
+                      <option value="news">News</option>
+                      <option value="astrophotography">Astrophotography</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button v-if="!article.removed" class="btn btn-link btn-remove" v-on:click.prevent="remove(article.id)">Remove</button>
+                    <div v-if="article.removed" class="row-removed__cta">
+                      Removed <button class="btn btn-link btn-undo" v-on:click="undoRemove(article.id)">Undo</button>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+
+            <div v-if="showValidationErrors" class="alert alert-danger" role="alert">
+              <strong>Whoops!</strong> Every article in the queue must have a category assigned to it
+            </div>
+
+            <div class="btn-with-preceeding-text">
+              <p class="btn-with-preceeding-text__text"><strong>{{ numReadyArticles() }} out of {{ numTotalArticles() }}</strong> articles ready to export</p>
+              <button v-if="!isExporting" class="btn btn-primary btn-lg text-nowrap btn-with-preceeding-text__btn" id="btn-export" v-bind:disabled="numReadyArticles() < numTotalArticles()">Export</button>
+              <button v-if="isExporting" class="btn btn-primary btn-lg text-nowrap btn-with-preceeding-text__btn" id="btn-exporting" disabled><i class="fas fa-spinner btn-icon"></i>Exporting</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="./app.js"></script>
+
+  </body>
+</html>

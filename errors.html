@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+    <style media="screen">
+
+      .btn-with-preceeding-text {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        align-items: center;
+      }
+
+      .btn-with-preceeding-text__text {
+        margin-bottom: 0;
+      }
+
+      .btn-with-preceeding-text__btn {
+        margin-left: 20px;
+      }
+
+      .btn-remove {
+        color: red;
+      }
+
+      .btn-icon {
+        margin-right: 5px;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .row-removed {
+        background-color: #e9ecef;
+        position: relative;
+      }
+
+      .row-removed td {
+        color: #aaa;
+      }
+
+      .btn-undo {
+
+      }
+
+      .row-removed__cta {
+        color: #000;
+      }
+
+      td .fa-check {
+        color: #28a745;
+      }
+
+      td .fa-exclamation {
+        color: #dc3545;
+      }
+
+      .custom-select.is-valid {
+        background: none;
+      }
+
+      button[disabled] {
+        cursor: not-allowed;
+      }
+
+      .masthead {
+        margin-top: 30px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <h1>Export articles to Fabric</h1>
+          <p>Site: sciencefocus.com</p>
+
+          <h2>Article queue</h2>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Issue</th>
+                <th>Website category (required)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><i class="fas fa-exclamation"></i></td>
+                <td>To understand our Universe, look to its first moments</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select is-invalid" name="">
+                    <option value="-1">Please select...</option>
+                    <option>Future technology</option>
+                    <option>Nature</option>
+                    <option>Space</option>
+                    <option>The Human Body</option>
+                    <option>Everyday science</option>
+                    <option>Planet Earth</option>
+                  </select>
+                  <div class="invalid-feedback">A category is required</div>
+                </td>
+                <td><button class="btn btn-link btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-check"></i></td>
+                <td>Look inside a dinosaur's skull with these pictures from the pop-up book Tyrannosaurus Rex</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select is-valid" name="">
+                    <option value="-1">Please select...</option>
+                    <option value="future-tech">Future technology</option>
+                    <option value="nature">Nature</option>
+                    <option value="space">Space</option>
+                    <option value="the-human-body" selected>The Human Body</option>
+                    <option value="everyday-science">Everyday science</option>
+                    <option value="planet-earth">Planet Earth</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-link btn-remove">Remove</button></td>
+              </tr>
+              <tr class="row-removed">
+                <td></td>
+                <td>7 brilliant books about language science</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select" name="" disabled>
+                    <option value="-1">Please select...</option>
+                    <option>Future technology</option>
+                    <option>Nature</option>
+                    <option>Space</option>
+                    <option>The Human Body</option>
+                    <option>Everyday science</option>
+                    <option>Planet Earth</option>
+                  </select>
+                </td>
+                <td>
+                  <div class="row-removed__cta">
+                    Removed <button class="btn btn-link btn-undo">Undo</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>How did the bouncing bomb work</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select" name="">
+                    <option value="-1">Please select...</option>
+                    <option>Future technology</option>
+                    <option>Nature</option>
+                    <option>Space</option>
+                    <option>The Human Body</option>
+                    <option>Everyday science</option>
+                    <option>Planet Earth</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-link btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Inventor of war machines and calculus (almost)</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select" name="">
+                    <option value="-1">Please select...</option>
+                    <option>Future technology</option>
+                    <option>Nature</option>
+                    <option>Space</option>
+                    <option>The Human Body</option>
+                    <option>Everyday science</option>
+                    <option>Planet Earth</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-link btn-remove">Remove</button></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Could we genetically modify an animal so that it could live unaided on another planet or moon?</td>
+                <td>February 2020</td>
+                <td>
+                  <select class="custom-select" name="">
+                    <option value="-1">Please select...</option>
+                    <option>Future technology</option>
+                    <option>Nature</option>
+                    <option>Space</option>
+                    <option>The Human Body</option>
+                    <option>Everyday science</option>
+                    <option>Planet Earth</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-link btn-remove">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="alert alert-danger" role="alert">
+            <strong>Whoops!</strong> Every article in the queue must have a category assigned to it
+          </div>
+
+          <div class="btn-with-preceeding-text">
+            <p class="btn-with-preceeding-text__text"><strong>1 out of 5</strong> articles ready to export</p>
+            <button class="btn btn-primary btn-lg text-nowrap btn-with-preceeding-text__btn" id="btn-export" disabled>Export</button>
+            <button class="btn btn-primary btn-lg text-nowrap btn-with-preceeding-text__btn hide" id="btn-exporting" disabled><i class="fas fa-spinner btn-icon"></i>Exporting</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+
+      var exportBtn = document.getElementById('btn-export');
+      var exportingBtn = document.getElementById('btn-exporting');
+      var deleteBtns = document.querySelectorAll('.btn-remove');
+
+      function fakeExport() {
+        exportBtn.classList.add('hide');
+        exportingBtn.classList.remove('hide');
+
+        deleteBtns.forEach(function(el) {
+          el.disabled = true;
+        });
+
+        setTimeout(function() {
+          window.location.href = 'success.html';
+        }, 2000);
+      }
+
+      exportBtn.addEventListener('click', fakeExport);
+
+    </script>
+
+  </body>
+</html>
